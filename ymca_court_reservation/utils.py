@@ -13,14 +13,14 @@ def rest_long():
 def time_passed():
     now = datetime.now()
     #     print(now.year, now.month, now.day, now.hour, now.minute, now.second)
-    if now.minute >= 4 and now.minute <= 10:
+    if now.minute >= 4 and now.hour == 0:
         return True
 
 
 def is_correct_time():
     now = datetime.now()
     #     print(now.year, now.month, now.day, now.hour, now.minute, now.second)
-    if (now.minute >= 58 and now.hour == 23) or now.hour == 0:
+    if (now.minute >= 59 and now.hour == 23) or now.hour == 0:
         return True
     return False
 
