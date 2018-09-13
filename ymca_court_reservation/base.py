@@ -86,7 +86,7 @@ def find_booking_items(driver, start_day, start_month, end_day, end_month,
             break
 
     select_cnt = 0
-    if time_passed:
+    if time_passed():
         sys.exit()
 
     for i in range(len(result_items)):
@@ -102,11 +102,15 @@ def checkout(driver):
 
     add_button = driver.find_element_by_id('AddBookBottom')
     add_button.click()
-
+    
+    rest_long()
+    rest_long()
     go_to_checkout_button = driver.find_element_by_xpath(
         '//*[@title="Click to Checkout"]')
     go_to_checkout_button.click()
 
+    rest_long()
+    rest_long()
     complete_transaction_button = driver.find_element_by_xpath(
         '//*[@title="Click to Complete Transaction"]')
     complete_transaction_button.click()

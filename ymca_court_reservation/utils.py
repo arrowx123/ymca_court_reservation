@@ -7,7 +7,7 @@ def rest():
 
 
 def rest_long():
-    sleep(0.5)
+    sleep(0.35)
 
 
 def time_passed():
