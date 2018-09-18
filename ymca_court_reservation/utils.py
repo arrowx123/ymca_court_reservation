@@ -10,6 +10,13 @@ def rest_long():
     sleep(0.35)
 
 
+def passed_midnight():
+    now = datetime.now()
+    if now.hour == 0:
+        return True
+    return False
+
+
 def time_passed():
     now = datetime.now()
     #     print(now.year, now.month, now.day, now.hour, now.minute, now.second)

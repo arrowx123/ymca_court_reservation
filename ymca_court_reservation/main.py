@@ -2,7 +2,7 @@ from datetime import datetime
 from selenium import webdriver
 
 from ymca_court_reservation.base import login, log_out, go_to_court_booking_page, find_booking_items, checkout
-from ymca_court_reservation.utils import read_secrets, is_correct_time, rest
+from ymca_court_reservation.utils import read_secrets, is_correct_time, rest, passed_midnight
 
 if __name__ == "__main__":
     secrets_dir = './secrets.txt'
@@ -12,11 +12,17 @@ if __name__ == "__main__":
     print(now.year, now.month, now.day, now.hour, now.minute, now.second)
 
     # start_day = '8'
-    start_day = str(now.day + 3)
+    if passed_midnight():
+        start_day = str(now.day + 2)
+    else:
+        start_day = str(now.day + 3)
     start_month = str(now.month)
 
     # end_day = '9'
-    end_day = str(now.day + 3)
+    if passed_midnight():
+        end_day = str(now.day + 2)
+    else:
+        end_day = str(now.day + 3)
     end_month = str(now.month)
 
     start_time = '6'

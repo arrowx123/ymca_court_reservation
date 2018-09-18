@@ -4,6 +4,9 @@ from ymca_court_reservation.utils import rest, rest_long, time_passed
 
 
 def login(driver, login_id, account_pin):
+    
+    rest_long()
+    rest_long()
 
     sign_in_button = driver.find_element_by_id('toolbar-login')
     sign_in_button.click()
@@ -21,7 +24,8 @@ def login(driver, login_id, account_pin):
 
 
 def log_out(driver):
-    rest()
+    rest_long()
+    rest_long()
     logout_button = driver.find_element_by_id('toolbar-logout')
     logout_button.click()
 
