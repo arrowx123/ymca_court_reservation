@@ -10,6 +10,11 @@ def rest_long():
     sleep(0.35)
 
 
+def rest_xlong():
+    rest_long()
+    rest_long()
+
+
 def passed_midnight():
     now = datetime.now()
     if now.hour == 0:
