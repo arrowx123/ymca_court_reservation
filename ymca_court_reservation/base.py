@@ -89,17 +89,18 @@ def find_booking_items(driver, start_day, start_month, end_day, end_month,
         id_ = 'chkBook' + str(i + 1)
         current_item = driver.find_element_by_id(id_)
         current_item.click()
-        rest_xlong()
 
         select_cnt += 1
         if select_cnt >= 2:
             break
+    rest_xlong()
 
 
 def checkout(driver):
 
     add_button = driver.find_element_by_id('AddBookBottom')
     add_button.click()
+    rest_xlong()
     rest_xlong()
 
     go_to_checkout_button = driver.find_element_by_xpath(
