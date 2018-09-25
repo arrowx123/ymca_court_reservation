@@ -1,3 +1,4 @@
+import functools
 from time import sleep
 from datetime import datetime
 
@@ -47,3 +48,20 @@ def read_secrets(secrets_dir):
             secrets[user] = pass_
             print(user, pass_)
     return secrets
+
+
+def exception(function):
+    """
+    A decorator that wraps the passed in function
+    """
+
+    @functools.wraps(function)
+    def wrapper(*args, **kwargs):
+        for i in range(2):
+            try:
+                return function(*args, **kwargs)
+                break
+            except:
+                print('Retry {}.'.format(function.__name__))
+
+    return wrapper

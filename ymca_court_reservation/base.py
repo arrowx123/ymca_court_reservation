@@ -1,8 +1,9 @@
 import sys
 from selenium.webdriver.support.ui import Select
-from ymca_court_reservation.utils import rest_xlong, time_passed
+from ymca_court_reservation.utils import rest_xlong, time_passed, exception
 
 
+@exception
 def login(driver, login_id, account_pin):
     sign_in_button = driver.find_element_by_id('toolbar-login')
     sign_in_button.click()
@@ -19,12 +20,14 @@ def login(driver, login_id, account_pin):
     rest_xlong()
 
 
+@exception
 def log_out(driver):
     logout_button = driver.find_element_by_id('toolbar-logout')
     logout_button.click()
     rest_xlong()
 
 
+@exception
 def go_to_court_booking_page(driver):
     court_reservation_button = driver.find_element_by_xpath(
         '//a[@href="../Facilities/FacilitiesSearchWizard.asp"]')
@@ -32,6 +35,7 @@ def go_to_court_booking_page(driver):
     rest_xlong()
 
 
+@exception
 def find_booking_items(driver, start_day, start_month, end_day, end_month,
                        start_time, end_time, start_ampm, end_ampm):
     facility_booking_radio = driver.find_element_by_id('search-facbook-radio')
@@ -71,6 +75,9 @@ def find_booking_items(driver, start_day, start_month, end_day, end_month,
     place_checkbox.click()
     rest_xlong()
 
+
+@exception
+def check_booking_items(driver):
     while (True):
         search_button = driver.find_element_by_xpath('//*[@value="Search"]')
         search_button.click()
@@ -82,8 +89,8 @@ def find_booking_items(driver, start_day, start_month, end_day, end_month,
             break
 
     select_cnt = 0
-    if time_passed():
-        sys.exit()
+    #    if time_passed():
+    #        sys.exit()
 
     for i in range(len(result_items)):
         id_ = 'chkBook' + str(i + 1)
@@ -96,11 +103,11 @@ def find_booking_items(driver, start_day, start_month, end_day, end_month,
     rest_xlong()
 
 
+@exception
 def checkout(driver):
 
     add_button = driver.find_element_by_id('AddBookBottom')
     add_button.click()
-    rest_xlong()
     rest_xlong()
 
     go_to_checkout_button = driver.find_element_by_xpath(

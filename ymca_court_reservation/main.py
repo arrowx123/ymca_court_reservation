@@ -1,7 +1,12 @@
 from datetime import datetime
 from selenium import webdriver
 
-from ymca_court_reservation.base import login, log_out, go_to_court_booking_page, find_booking_items, checkout
+from ymca_court_reservation.base import login, \
+        log_out, \
+        go_to_court_booking_page, \
+        find_booking_items, \
+        check_booking_items, \
+        checkout
 from ymca_court_reservation.utils import read_secrets, is_correct_time, rest, passed_midnight
 
 if __name__ == "__main__":
@@ -46,6 +51,7 @@ if __name__ == "__main__":
 
         find_booking_items(driver, start_day, start_month, end_day, end_month,
                            start_time, end_time, start_ampm, end_ampm)
+        check_booking_items(driver)
 
         checkout(driver)
         log_out(driver)
