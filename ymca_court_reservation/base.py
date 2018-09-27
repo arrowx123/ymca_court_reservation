@@ -1,4 +1,3 @@
-import sys
 from selenium.webdriver.support.ui import Select
 from ymca_court_reservation.utils import rest_xlong, time_passed, exception
 
@@ -103,19 +102,27 @@ def check_booking_items(driver):
     rest_xlong()
 
 
-@exception
 def checkout(driver):
+    @exception
+    def checkout_1():
+        add_button = driver.find_element_by_id('AddBookBottom')
+        add_button.click()
+        rest_xlong()
 
-    add_button = driver.find_element_by_id('AddBookBottom')
-    add_button.click()
-    rest_xlong()
+    @exception
+    def checkout_2():
+        go_to_checkout_button = driver.find_element_by_xpath(
+            '//*[@title="Click to Checkout"]')
+        go_to_checkout_button.click()
+        rest_xlong()
 
-    go_to_checkout_button = driver.find_element_by_xpath(
-        '//*[@title="Click to Checkout"]')
-    go_to_checkout_button.click()
-    rest_xlong()
+    @exception
+    def checkout_3():
+        complete_transaction_button = driver.find_element_by_xpath(
+            '//*[@title="Click to Complete Transaction"]')
+        complete_transaction_button.click()
+        rest_xlong()
 
-    complete_transaction_button = driver.find_element_by_xpath(
-        '//*[@title="Click to Complete Transaction"]')
-    complete_transaction_button.click()
-    rest_xlong()
+    checkout_1()
+    checkout_2()
+#    checkout_3()

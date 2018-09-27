@@ -33,7 +33,8 @@ def time_passed():
 def is_correct_time():
     now = datetime.now()
     #     print(now.year, now.month, now.day, now.hour, now.minute, now.second)
-    if (now.minute >= 59 and now.hour == 23) or now.hour == 0:
+    if (now.minute >= 59 and now.hour == 23) or (now.minute <= 10
+                                                 and now.hour == 0):
         return True
     return False
 
@@ -57,7 +58,7 @@ def exception(function):
 
     @functools.wraps(function)
     def wrapper(*args, **kwargs):
-        for i in range(2):
+        while True:
             try:
                 return function(*args, **kwargs)
                 break
