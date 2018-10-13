@@ -4,7 +4,7 @@ from selenium import webdriver
 
 from ymca_court_reservation.base import (
     login, log_out, go_to_court_booking_page, find_booking_items,
-    check_booking_items, checkout)
+    check_booking_items, checkout, ROOT_URL)
 from ymca_court_reservation.utils import (read_secrets, is_correct_time, rest,
                                           passed_midnight)
 
@@ -58,18 +58,16 @@ if __name__ == "__main__":
         rest()
 
     def book_court(user, secret):
-        url = 'https://inscription.ymcaquebec.org'
         succ = False
 
         driver = webdriver.Chrome()
-        driver.get(url)
+        driver.get(ROOT_URL)
         login(driver, user, secrets[user])
 
         while True:
             if is_correct_time() is False:
                 break
             try:
-                driver.get(url)
                 go_to_court_booking_page(driver)
 
                 find_booking_items(driver, start_day, start_month, end_day,
