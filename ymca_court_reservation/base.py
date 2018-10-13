@@ -2,7 +2,7 @@ from selenium.webdriver.support.ui import Select
 from ymca_court_reservation.utils import rest_xlong, time_passed, exception
 
 
-@exception
+#@exception
 def login(driver, login_id, account_pin):
     sign_in_button = driver.find_element_by_id('toolbar-login')
     sign_in_button.click()
@@ -19,14 +19,14 @@ def login(driver, login_id, account_pin):
     rest_xlong()
 
 
-@exception
+#@exception
 def log_out(driver):
     logout_button = driver.find_element_by_id('toolbar-logout')
     logout_button.click()
     rest_xlong()
 
 
-@exception
+#@exception
 def go_to_court_booking_page(driver):
     court_reservation_button = driver.find_element_by_xpath(
         '//a[@href="../Facilities/FacilitiesSearchWizard.asp"]')
@@ -34,7 +34,7 @@ def go_to_court_booking_page(driver):
     rest_xlong()
 
 
-@exception
+#@exception
 def find_booking_items(driver, start_day, start_month, end_day, end_month,
                        start_time, end_time, start_ampm, end_ampm):
     facility_booking_radio = driver.find_element_by_id('search-facbook-radio')
@@ -75,7 +75,7 @@ def find_booking_items(driver, start_day, start_month, end_day, end_month,
     rest_xlong()
 
 
-@exception
+#@exception
 def check_booking_items(driver):
     while (True):
         search_button = driver.find_element_by_xpath('//*[@value="Search"]')
@@ -103,20 +103,20 @@ def check_booking_items(driver):
 
 
 def checkout(driver):
-    @exception
+#    @exception
     def checkout_1():
         add_button = driver.find_element_by_id('AddBookBottom')
         add_button.click()
         rest_xlong()
 
-    @exception
+#    @exception
     def checkout_2():
         go_to_checkout_button = driver.find_element_by_xpath(
             '//*[@title="Click to Checkout"]')
         go_to_checkout_button.click()
         rest_xlong()
 
-    @exception
+#    @exception
     def checkout_3():
         complete_transaction_button = driver.find_element_by_xpath(
             '//*[@title="Click to Complete Transaction"]')
@@ -125,4 +125,4 @@ def checkout(driver):
 
     checkout_1()
     checkout_2()
-#    checkout_3()
+    checkout_3()
